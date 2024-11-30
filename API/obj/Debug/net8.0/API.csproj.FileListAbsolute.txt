@@ -5,10 +5,6 @@
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/API/bin/Debug/net8.0/API.runtimeconfig.json
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/API/bin/Debug/net8.0/API.dll
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/API/bin/Debug/net8.0/API.pdb
-/Users/karimmoustamid/Desktop/Study/AngularBazaar/API/bin/Debug/net8.0/Microsoft.OpenApi.dll
-/Users/karimmoustamid/Desktop/Study/AngularBazaar/API/bin/Debug/net8.0/Swashbuckle.AspNetCore.Swagger.dll
-/Users/karimmoustamid/Desktop/Study/AngularBazaar/API/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerGen.dll
-/Users/karimmoustamid/Desktop/Study/AngularBazaar/API/bin/Debug/net8.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/API/bin/Debug/net8.0/Core.dll
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/API/bin/Debug/net8.0/Infrastructure.dll
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/API/bin/Debug/net8.0/Infrastructure.pdb
@@ -18,7 +14,6 @@
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/API/obj/Debug/net8.0/API.AssemblyInfoInputs.cache
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/API/obj/Debug/net8.0/API.AssemblyInfo.cs
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/API/obj/Debug/net8.0/API.csproj.CoreCompileInputs.cache
-/Users/karimmoustamid/Desktop/Study/AngularBazaar/API/obj/Debug/net8.0/API.MvcApplicationPartsAssemblyInfo.cs
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/API/obj/Debug/net8.0/API.MvcApplicationPartsAssemblyInfo.cache
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/API/obj/Debug/net8.0/API.sourcelink.json
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/API/obj/Debug/net8.0/staticwebassets.build.json
