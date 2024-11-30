@@ -1,0 +1,12 @@
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/bin/Debug/net8.0/Core.deps.json
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/bin/Debug/net8.0/Core.dll
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/bin/Debug/net8.0/Core.pdb
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/obj/Debug/net8.0/Core.GeneratedMSBuildEditorConfig.editorconfig
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/obj/Debug/net8.0/Core.AssemblyInfoInputs.cache
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/obj/Debug/net8.0/Core.AssemblyInfo.cs
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/obj/Debug/net8.0/Core.csproj.CoreCompileInputs.cache
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/obj/Debug/net8.0/Core.sourcelink.json
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/obj/Debug/net8.0/Core.dll
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/obj/Debug/net8.0/refint/Core.dll
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/obj/Debug/net8.0/Core.pdb
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/obj/Debug/net8.0/ref/Core.dll
