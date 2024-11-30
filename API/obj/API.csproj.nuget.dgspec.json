@@ -13,7 +13,6 @@
         "packagesPath": "/Users/karimmoustamid/.nuget/packages/",
         "outputPath": "/Users/karimmoustamid/Desktop/Study/AngularBazaar/API/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/karimmoustamid/.nuget/NuGet/NuGet.Config"
         ],
@@ -87,7 +86,6 @@
         "packagesPath": "/Users/karimmoustamid/.nuget/packages/",
         "outputPath": "/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/karimmoustamid/.nuget/NuGet/NuGet.Config"
         ],
@@ -148,7 +146,6 @@
         "packagesPath": "/Users/karimmoustamid/.nuget/packages/",
         "outputPath": "/Users/karimmoustamid/Desktop/Study/AngularBazaar/Infrastructure/obj/",
         "projectStyle": "PackageReference",
-        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/karimmoustamid/.nuget/NuGet/NuGet.Config"
         ],
