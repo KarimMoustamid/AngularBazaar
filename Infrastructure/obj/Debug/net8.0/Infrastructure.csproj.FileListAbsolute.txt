@@ -14,3 +14,5 @@
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/Infrastructure/obj/Debug/net8.0/refint/Infrastructure.dll
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/Infrastructure/obj/Debug/net8.0/Infrastructure.pdb
 /Users/karimmoustamid/Desktop/Study/AngularBazaar/Infrastructure/obj/Debug/net8.0/ref/Infrastructure.dll
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Infrastructure/bin/Debug/net8.0/Infrastructure.runtimeconfig.json
+/Users/karimmoustamid/Desktop/Study/AngularBazaar/Infrastructure/obj/Debug/net8.0/Infrastructure.genruntimeconfig.cache
