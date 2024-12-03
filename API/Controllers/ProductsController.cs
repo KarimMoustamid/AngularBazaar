@@ -68,7 +68,6 @@ namespace API.Controllers
             {
                 return this.NoContent();
             }
-
             return this.BadRequest("Could not delete the product due to invalid input or server error.");
         }
 
