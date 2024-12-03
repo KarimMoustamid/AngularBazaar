@@ -1,26 +1,25 @@
 namespace API.Controllers
 {
     using Core.Entities;
+    using Core.Interfaces;
     using Infrastructure.Data;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
 
     [ApiController]
     [Route("api/[controller]")]
-    public class ProductsController(StoreContext context) : ControllerBase
+    public class ProductsController(IProductRepository _productRepository) : ControllerBase
     {
-        private readonly StoreContext _context = context ?? throw new ArgumentNullException(nameof(context));
-
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
         {
-            return this.Ok(await _context.Products.ToListAsync());
+            return this.Ok(await _productRepository.GetProductsAsync());
         }
 
-        [HttpGet("{id:int}")]
+        [HttpGet("{id:int}", Name = "GetProduct")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _productRepository.GetProductByIdAsync(id);
 
             if (product is null) return this.NotFound();
 
@@ -30,10 +29,14 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> CreateProduct(Product product)
         {
-            _context.Products.Add(product);
-            await _context.SaveChangesAsync();
+            _productRepository.AddProduct(product);
 
-            return product;
+            if (await _productRepository.SaveChangesAsync())
+            {
+                return CreatedAtRoute("GetProduct", new {id = product.Id}, product);
+            }
+
+            return this.BadRequest("Could not create the product due to invalid input or server error.");
         }
 
         [HttpPut("{id:int}")]
@@ -42,31 +45,37 @@ namespace API.Controllers
             if (product.Id != id || !ProductExists(id))
                 return this.BadRequest("Cannot update this product as it does not exist.");
 
-            _context.Entry(product).State = EntityState.Modified;
-            await _context.SaveChangesAsync();
+            _productRepository.UpdateProduct(product);
+            if (await _productRepository.SaveChangesAsync())
+            {
+                return this.NoContent();
+            }
 
-            return this.NoContent();
+            return this.BadRequest("Could not update the product due to invalid input or server error.");
         }
 
 
-        [HttpDelete("{i")]
+        [HttpDelete("{id:int}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
-            var product = await _context.Products.FindAsync(id);
+            var product = await _productRepository.GetProductByIdAsync(id);
 
             if (product is null)
-                return this.NotFound();
+                return this.NotFound("Product not found.");
 
-            _context.Products.Remove(product);
-            await _context.SaveChangesAsync();
+            _productRepository.DeleteProduct(product);
+            if (await _productRepository.SaveChangesAsync())
+            {
+                return this.NoContent();
+            }
 
-            return this.NoContent();
+            return this.BadRequest("Could not delete the product due to invalid input or server error.");
         }
 
         #region Helpers
         private bool ProductExists(int id)
         {
-            return _context.Products.Any(e => e.Id == id);
+            return _productRepository.ProductExists(id);
         }
         #endregion
     }
