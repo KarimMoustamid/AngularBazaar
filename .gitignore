@@ -485,3 +485,10 @@ $RECYCLE.BIN/
 
 # Rider
 .idea/*
+
+
+# Other
+API/obj
+Core/obj
+Infrastructure/obj
+API/appsettings.json

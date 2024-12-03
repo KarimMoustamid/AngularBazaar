@@ -49,7 +49,7 @@ namespace API.Controllers
         }
 
 
-        [HttpDelete("{id:int}")]
+        [HttpDelete("{i")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
