@@ -7,7 +7,7 @@ namespace Core.Interfaces
     public interface IProductRepository
     {
         #region Products
-        Task<IReadOnlyList<Product>> GetProductsAsync(string? brand, string? type);
+        Task<IReadOnlyList<Product>> GetProductsAsync(string? brand, string? type, string? sort);
         Task<Product?> GetProductByIdAsync(int id);
         void AddProduct(Product product);
         void UpdateProduct(Product product);
