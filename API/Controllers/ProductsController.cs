@@ -10,10 +10,11 @@ namespace API.Controllers
     [Route("api/[controller]")]
     public class ProductsController(IProductRepository _productRepository) : ControllerBase
     {
+        #region Products
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Product>>> GetProducts()
+        public async Task<ActionResult<IEnumerable<Product>>> GetProducts(string? brand, string? type)
         {
-            return this.Ok(await _productRepository.GetProductsAsync());
+            return this.Ok(await _productRepository.GetProductsAsync(brand, type));
         }
 
         [HttpGet("{id:int}", Name = "GetProduct")]
@@ -68,8 +69,26 @@ namespace API.Controllers
             {
                 return this.NoContent();
             }
+
             return this.BadRequest("Could not delete the product due to invalid input or server error.");
         }
+        #endregion
+
+        #region Brands
+        [HttpGet("brands")]
+        public async Task<ActionResult<IReadOnlyList<string>>> GetBrands()
+        {
+            return this.Ok(await _productRepository.GetBrandsAsync());
+        }
+        #endregion
+
+        #region Types
+        [HttpGet("types")]
+        public async Task<ActionResult<IReadOnlyList<string>>> Gettypes()
+        {
+            return this.Ok(await _productRepository.GetTypesAsync());
+        }
+        #endregion
 
         #region Helpers
         private bool ProductExists(int id)

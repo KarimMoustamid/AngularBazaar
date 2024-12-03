@@ -8,9 +8,17 @@ namespace Infrastructure.Data.Repositories
     {
         private readonly StoreContext _context = context;
 
-        public async Task<IReadOnlyList<Product>> GetProductsAsync()
+        #region Products
+        public async Task<IReadOnlyList<Product>> GetProductsAsync(string? brand, string? type)
         {
-            return await _context.Products.ToListAsync();
+            var query = _context.Products.AsQueryable();
+
+            if (!string.IsNullOrEmpty(brand))
+                query = query.Where(p => p.Brand == brand);
+            if (!string.IsNullOrEmpty(type))
+                query = query.Where(p => p.Type == type);
+
+            return await query.ToListAsync();
         }
 
         public async Task<Product?> GetProductByIdAsync(int id)
@@ -42,5 +50,20 @@ namespace Infrastructure.Data.Repositories
         {
             return await _context.SaveChangesAsync() > 0;
         }
+        #endregion
+
+        #region Brands
+        public async Task<IReadOnlyList<string>> GetBrandsAsync()
+        {
+            return await _context.Products.Select(p => p.Brand).Distinct().ToListAsync();
+        }
+        #endregion
+
+        #region Types
+        public async Task<IReadOnlyList<string>> GetTypesAsync()
+        {
+            return await _context.Products.Select(p => p.Type).Distinct().ToListAsync();
+        }
+        #endregion
     }
 }
