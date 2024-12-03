@@ -4032,6 +4032,7 @@
       "packagesPath": "/Users/karimmoustamid/.nuget/packages/",
       "outputPath": "/Users/karimmoustamid/Desktop/Study/AngularBazaar/Infrastructure/obj/",
       "projectStyle": "PackageReference",
+      "UsingMicrosoftNETSdk": false,
       "configFilePaths": [
         "/Users/karimmoustamid/.nuget/NuGet/NuGet.Config"
       ],

@@ -13,6 +13,7 @@
         "packagesPath": "/Users/karimmoustamid/.nuget/packages/",
         "outputPath": "/Users/karimmoustamid/Desktop/Study/AngularBazaar/Core/obj/",
         "projectStyle": "PackageReference",
+        "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
           "/Users/karimmoustamid/.nuget/NuGet/NuGet.Config"
         ],
