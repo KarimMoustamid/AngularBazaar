@@ -17,7 +17,7 @@ namespace API.Controllers
             return this.Ok(await _context.Products.ToListAsync());
         }
 
-        [HttpGet("id:int")]
+        [HttpGet("{id:int}")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
             var product = await _context.Products.FindAsync(id);
@@ -35,5 +35,39 @@ namespace API.Controllers
 
             return product;
         }
+
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> UpdateProduct(int id, Product product)
+        {
+            if (product.Id != id || !ProductExists(id))
+                return this.BadRequest("Cannot update this product as it does not exist.");
+
+            _context.Entry(product).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return this.NoContent();
+        }
+
+
+        [HttpDelete("{id:int}")]
+        public async Task<ActionResult> DeleteProduct(int id)
+        {
+            var product = await _context.Products.FindAsync(id);
+
+            if (product is null)
+                return this.NotFound();
+
+            _context.Products.Remove(product);
+            await _context.SaveChangesAsync();
+
+            return this.NoContent();
+        }
+
+        #region Helpers
+        private bool ProductExists(int id)
+        {
+            return _context.Products.Any(e => e.Id == id);
+        }
+        #endregion
     }
 }
