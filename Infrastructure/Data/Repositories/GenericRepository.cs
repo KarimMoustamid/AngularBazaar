@@ -2,43 +2,45 @@ namespace Infrastructure.Data.Repositories
 {
     using Core.Entities;
     using Core.Interfaces;
+    using Microsoft.EntityFrameworkCore;
 
 
     public class GenericRepository<T>(StoreContext context) : IGenericRepository<T> where T : BaseEntity
     {
-        public Task<T?> GetByIdAsync(int id)
+        public async Task<T?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            return await context.Set<T>().FindAsync(id);
         }
 
-        public Task<IReadOnlyList<T>> GetAllAsync()
+        public async Task<IReadOnlyList<T>> GetAllAsync()
         {
-            throw new NotImplementedException();
+            return await context.Set<T>().ToListAsync();
         }
 
         public void Add(T entity)
         {
-            throw new NotImplementedException();
+            context.Set<T>().Add(entity);
         }
 
         public void Update(T entity)
         {
-            throw new NotImplementedException();
+            context.Set<T>().Attach(entity);
+            context.Entry(entity).State = EntityState.Modified;
         }
 
         public void Delete(T entity)
         {
-            throw new NotImplementedException();
+            context.Set<T>().Remove(entity);
         }
 
-        public Task<bool> SaveChangesAsync()
+        public async Task<bool> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return await context.SaveChangesAsync() > 0;
         }
 
         public bool EntityExists(int id)
         {
-            throw new NotImplementedException();
+            return context.Set<T>().Any(e => e.Id == id);
         }
     }
 }
