@@ -6,12 +6,10 @@ namespace Infrastructure.Data.Repositories
 
     public class ProductRepository(StoreContext context) : IProductRepository
     {
-        private readonly StoreContext _context = context;
-
         #region Products
         public async Task<IReadOnlyList<Product>> GetProductsAsync(string? brand, string? type, string? sort)
         {
-            var query = _context.Products.AsQueryable();
+            var query = context.Products.AsQueryable();
 
             if (!string.IsNullOrEmpty(brand))
                 query = query.Where(p => p.Brand == brand);
@@ -30,46 +28,46 @@ namespace Infrastructure.Data.Repositories
 
         public async Task<Product?> GetProductByIdAsync(int id)
         {
-            return await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+            return await context.Products.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         public void AddProduct(Product product)
         {
-            _context.Products.Add(product);
+            context.Products.Add(product);
         }
 
         public void UpdateProduct(Product product)
         {
-            _context.Entry(product).State = EntityState.Modified;
+            context.Entry(product).State = EntityState.Modified;
         }
 
         public void DeleteProduct(Product product)
         {
-            _context.Products.Remove(product);
+            context.Products.Remove(product);
         }
 
         public bool ProductExists(int id)
         {
-            return _context.Products.Any(e => e.Id == id);
+            return context.Products.Any(e => e.Id == id);
         }
 
         public async Task<bool> SaveChangesAsync()
         {
-            return await _context.SaveChangesAsync() > 0;
+            return await context.SaveChangesAsync() > 0;
         }
         #endregion
 
         #region Brands
         public async Task<IReadOnlyList<string>> GetBrandsAsync()
         {
-            return await _context.Products.Select(p => p.Brand).Distinct().ToListAsync();
+            return await context.Products.Select(p => p.Brand).Distinct().ToListAsync();
         }
         #endregion
 
         #region Types
         public async Task<IReadOnlyList<string>> GetTypesAsync()
         {
-            return await _context.Products.Select(p => p.Type).Distinct().ToListAsync();
+            return await context.Products.Select(p => p.Type).Distinct().ToListAsync();
         }
         #endregion
     }
