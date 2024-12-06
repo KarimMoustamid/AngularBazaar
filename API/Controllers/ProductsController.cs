@@ -8,19 +8,21 @@ namespace API.Controllers
 
     [ApiController]
     [Route("api/[controller]")]
-    public class ProductsController(IProductRepository _productRepository) : ControllerBase
+    public class ProductsController(IGenericRepository<Product> genericRepository) : ControllerBase
     {
         #region Products
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Product>>> GetProducts(string? brand, string? type, string? sort)
         {
-            return this.Ok(await _productRepository.GetProductsAsync(brand, type, sort));
+            // return this.Ok(await _productRepository.GetProductsAsync(brand, type, sort));
+            // We don't have the existing functionality of sorting and filtering products.
+             return this.Ok(await genericRepository.GetAllAsync());
         }
 
         [HttpGet("{id:int}", Name = "GetProduct")]
         public async Task<ActionResult<Product>> GetProduct(int id)
         {
-            var product = await _productRepository.GetProductByIdAsync(id);
+            var product = await  genericRepository.GetByIdAsync(id);
 
             if (product is null) return this.NotFound();
 
@@ -30,9 +32,9 @@ namespace API.Controllers
         [HttpPost]
         public async Task<ActionResult<Product>> CreateProduct(Product product)
         {
-            _productRepository.AddProduct(product);
+            genericRepository.AddEntity(product);
 
-            if (await _productRepository.SaveChangesAsync())
+            if (await genericRepository.SaveChangesAsync())
             {
                 return CreatedAtRoute("GetProduct", new {id = product.Id}, product);
             }
@@ -46,8 +48,8 @@ namespace API.Controllers
             if (product.Id != id || !ProductExists(id))
                 return this.BadRequest("Cannot update this product as it does not exist.");
 
-            _productRepository.UpdateProduct(product);
-            if (await _productRepository.SaveChangesAsync())
+            genericRepository.UpdateEntity(product);
+            if (await genericRepository.SaveChangesAsync())
             {
                 return this.NoContent();
             }
@@ -59,13 +61,13 @@ namespace API.Controllers
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
-            var product = await _productRepository.GetProductByIdAsync(id);
+            var product = await genericRepository.GetByIdAsync(id);
 
             if (product is null)
                 return this.NotFound("Product not found.");
 
-            _productRepository.DeleteProduct(product);
-            if (await _productRepository.SaveChangesAsync())
+            genericRepository.DeleteEntity(product);
+            if (await genericRepository.SaveChangesAsync())
             {
                 return this.NoContent();
             }
@@ -78,7 +80,9 @@ namespace API.Controllers
         [HttpGet("brands")]
         public async Task<ActionResult<IReadOnlyList<string>>> GetBrands()
         {
-            return this.Ok(await _productRepository.GetBrandsAsync());
+            // TODO : Implement Generic method
+            // return this.Ok(await _productRepository.GetBrandsAsync());
+            return this.Ok();
         }
         #endregion
 
@@ -86,14 +90,16 @@ namespace API.Controllers
         [HttpGet("types")]
         public async Task<ActionResult<IReadOnlyList<string>>> Gettypes()
         {
-            return this.Ok(await _productRepository.GetTypesAsync());
+            // TODO : Implement Generic method
+            // return this.Ok(await _productRepository.GetTypesAsync());
+            return this.Ok();
         }
         #endregion
 
         #region Helpers
         private bool ProductExists(int id)
         {
-            return _productRepository.ProductExists(id);
+            return genericRepository.EntityExists(id);
         }
         #endregion
     }

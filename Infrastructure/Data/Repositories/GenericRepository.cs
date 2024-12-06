@@ -17,18 +17,18 @@ namespace Infrastructure.Data.Repositories
             return await context.Set<T>().ToListAsync();
         }
 
-        public void Add(T entity)
+        public void AddEntity(T entity)
         {
             context.Set<T>().Add(entity);
         }
 
-        public void Update(T entity)
+        public void UpdateEntity(T entity)
         {
             context.Set<T>().Attach(entity);
             context.Entry(entity).State = EntityState.Modified;
         }
 
-        public void Delete(T entity)
+        public void DeleteEntity(T entity)
         {
             context.Set<T>().Remove(entity);
         }

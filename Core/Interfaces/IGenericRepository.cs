@@ -6,9 +6,9 @@ namespace Core.Interfaces
     {
         Task<T?> GetByIdAsync(int id);
         Task<IReadOnlyList<T>> GetAllAsync();
-        void Add(T entity);
-        void Update(T entity);
-        void Delete(T entity);
+        void AddEntity(T entity);
+        void UpdateEntity(T entity);
+        void DeleteEntity(T entity);
         Task<bool> SaveChangesAsync();
         bool EntityExists(int id);
     }
